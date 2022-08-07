@@ -1,0 +1,13 @@
+.login input{
+    width: 30%;
+    margin-bottom: 2rem;
+    height: 3rem;
+    padding-left: 1rem;
+    border-radius: 1px 1px 0px 1px;
+
+}
+.login button{
+    width: 10%;
+    height: 2rem;
+    
+}

@@ -1,0 +1,188 @@
+
+import { useState, useEffect } from 'react';
+
+import './App.css';
+import Login from './component/Login';
+
+
+function App() {
+  const [data, setData]=useState([])
+  const[submited ,issubmitted]=useState(false)
+   useEffect(()=>{
+    fetch("https://jsonplaceholder.typicode.com/users").then((result)=>{
+      result.json().then((resp)=>{
+        setData(resp)
+      })
+    })
+},[])
+const users= data.map((user)=>(
+  <div key={user.id}>
+    <p>{user.email}</p>
+    <p>{user.password}</p>
+  </div>
+
+))
+const setuser=(event)=>{
+  setData(event.target.value)
+
+}
+
+  return (
+    <div className="App">
+ 
+    
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react'
+import "./Login.css"
+export default function Login(props) {
+  const[posts ,setPost]=useState([])
+ 
+  useEffect(()=>{
+    fetch("https://jsonplaceholder.typicode.com/posts").then((result)=>{
+      result.json().then((response)=>{
+        setPost(response)
+      })
+    })
+  },[])
+  const users=props.users
+
+const handalSubmit =(event)=>{
+  event.preventDefault()
+ { posts.filter((post)=>{
+    if(post.userid===users.id ){
+      return post
+    }else {
+      return ("please enter valid email")
+    }
+  })
+}
+}
+ 
+
+ 
+console.log(onclicklogin)
+  return (
+    <div>
+   <h1>Login Page</h1>
+   <form onSubmit={handalSubmit()}>
+ <div className='login'>
+    <div> 
+      <input type= "text" value={users.email} placeholder='enter your email '  />
+    </div>
+    <div>
+      <input type ="password" value={users.password} placeholder='enter your password' />
+    </div>
+    <div>
+  <button type ="submit">login</button>
+ </div>
+
+
+ {issubmitted ? <Login users={users} setuser={setuser}/>
+
+ </div>
+ </form>
+    </div>
+  )
+}
+
+
+
+import { useState, useEffect } from 'react';
+
+import './App.css';
+
+
+
+function App() {
+  const [data, setData]=useState([])
+  const[posts ,setPost]=useState([])
+  const[issubmit,setisSubmit]=useState(false)
+  const[email,setemail]=useState('')
+  
+  
+
+
+   useEffect(()=>{
+    fetch("https://jsonplaceholder.typicode.com/users").then((result)=>{
+      result.json().then((resp)=>{
+        setData(resp)
+      })
+    })
+},[])
+
+
+ 
+useEffect(()=>{
+  fetch("https://jsonplaceholder.typicode.com/posts").then((result)=>{
+    result.json().then((response)=>{
+      setPost(response)
+    })
+  })
+},[])
+
+
+
+const handlerSubmit=(event)=>{
+  event.preventDefault()
+  { data.filter((item)=> item.id===posts.userid)
+   if(data.email!==email){
+    console.log("enter valid email")
+    
+   }else{
+    setisSubmit(true)
+   }
+  }
+   }
+
+
+
+
+
+ const renderlogin=(<div>
+ <h1>Login Page</h1>
+ <form onSubmit={handlerSubmit}>
+<div className='login'>
+  <div> 
+    <input type= "text"  placeholder='enter your email ' onChange={(event)=>setemail(event.target.value)} />
+  </div>
+ 
+  <div>
+<button type ="submit">login</button>
+</div>
+</div>
+</form>
+</div>
+)
+
+return (
+    <div className="App">
+
+{issubmit ?  posts.map((item)=>(
+  <div className='listbox' key={item.id}>
+  <p>userId: {item.userId}</p>
+  <p>Id : {item.id}</p>
+  <p>Title : {item.title}</p>
+  <p>Body: {item.body}</p>
+  </div>
+)) :renderlogin}
+
+    
+    </div>
+  );
+}
+
+export default App;
