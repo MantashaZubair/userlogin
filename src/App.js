@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.css'
-
-import User from './component/User'
+import Posts from './component/Posts'
 
 
 
@@ -10,7 +9,7 @@ export default function App() {
   return (
     <div className="App">
 
-    <User/>
+    <Posts/>
     
     </div>
     

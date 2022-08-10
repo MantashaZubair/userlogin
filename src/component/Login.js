@@ -6,9 +6,7 @@ export default function Login(props) {
     const[password ,setpassword] =useState('')
 
   const onsubmit=()=>{
- let item=(email,password)
-        props.onClickhandler(item)
-                      
+        props.onClickhandler(email,password)               
     }
   return (
     <div>
