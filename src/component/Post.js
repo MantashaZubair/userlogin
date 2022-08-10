@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import Login from './Login'
+import React from "react";
 
-export default function Post(props) {
-    const[posts ,setPost]=useState([])
-    
-
-    useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/posts").then((result)=>{
-          result.json().then((response)=>{
-            setPost(response)
-          })
-        })
-      },[])
- 
-     
-      const onchangehandler = props.items.filter((item)=>{
-        if(item.id=== posts.userid){
-            return posts
-        }else{
-            return "enter valid email"
-        }
-    }
-        
-      )
-
+export default function Post({ posts, user }) {
+  console.log(posts);
   return (
-    <div><Login onClickhandler ={onchangehandler} /></div>
-  )
+    <>
+      {posts.map((item, index) => {
+        return (
+          <div key={index}>
+            <div className="info">
+              <h3>{user.name}</h3>
+              <h4>{user.phone}</h4>
+            </div>
+            <div>
+              <h2>{item.id}</h2>
+              <h2>{item.title}</h2>
+              <p>{item.body}</p>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
 }
